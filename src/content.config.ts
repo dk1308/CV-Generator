@@ -44,6 +44,18 @@ const cv = defineCollection({
       )
       .default([]),
 
+    // Personal projects (compact block with optional GitHub link)
+    personal_projects: z
+      .array(
+        z.object({
+          name: z.string(),
+          description: z.string().optional(),
+          technologies: z.array(z.string()).default([]),
+          github: z.string().url().optional(),
+        })
+      )
+      .default([]),
+
     // Experience (detailed project blocks)
     recent_projects: z
       .array(

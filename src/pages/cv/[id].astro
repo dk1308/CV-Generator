@@ -8,6 +8,7 @@ import NameBlock from "../../components/name-block.astro";
 import SectionHeading from "../../components/section-heading.astro";
 import SummaryBlock from "../../components/summary-block.astro";
 import ProjectBlock from "../../components/project-block.astro";
+import PersonalProjectBlock from "../../components/personal-project-block.astro";
 import CoursesBlock from "../../components/courses-block.astro";
 import SkillsCard from "../../components/skills-card.astro";
 import { getCollection, getEntry } from "astro:content";
@@ -86,6 +87,20 @@ const skillNames = (cv.skills ?? []).map((s: any) => typeof s === 'string' ? s :
           description={p.description}
           activities={p.activities}
           technologies={p.technologies}
+        />
+      ))}
+    </>
+  )}
+
+  {(cv.personal_projects ?? []).length > 0 && (
+    <>
+      <SectionHeading title="PERSONAL PROJECTS" />
+      {cv.personal_projects.map((project: any) => (
+        <PersonalProjectBlock
+          name={project.name}
+          description={project.description}
+          technologies={project.technologies}
+          github={project.github}
         />
       ))}
     </>
