@@ -1,0 +1,152 @@
+---
+/**
+ * Dynamic CV route — MyCv2 single-column layout.
+ * Sections: Name/Contact → Objective → Education → Experience → Certificate → Skills
+ */
+import CvLayout from "../../layouts/cv-layout.astro";
+import NameBlock from "../../components/name-block.astro";
+import SectionHeading from "../../components/section-heading.astro";
+import SummaryBlock from "../../components/summary-block.astro";
+import ProjectBlock from "../../components/project-block.astro";
+import CoursesBlock from "../../components/courses-block.astro";
+import SkillsCard from "../../components/skills-card.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("cv");
+  return entries.map((entry) => ({ params: { id: entry.id } }));
+}
+
+const { id } = Astro.params;
+if (!id) throw new Error('Missing route param "id"');
+const entry = await getEntry("cv", id);
+if (!entry) throw new Error(`CV entry "${id}" not found in src/content/cv/`);
+const cv = entry.data;
+
+// Normalize skills to string array
+const skillNames = (cv.skills ?? []).map((s: any) => typeof s === 'string' ? s : s.name);
+---
+
+<CvLayout title={`${cv.name} — CV`}>
+  <NameBlock
+    name={cv.name}
+    function={cv.function}
+    phone={cv.phone}
+    email={cv.email}
+    location={cv.location}
+  />
+
+  {cv.summary && (
+    <>
+      <SectionHeading title="OBJECTIVE" />
+      <SummaryBlock summary={cv.summary} />
+    </>
+  )}
+
+  {(cv.education ?? []).length > 0 && (
+    <>
+      <SectionHeading title="EDUCATION" />
+      {cv.education.map((edu: any) => (
+        <div class="education-entry">
+          <div class="edu-header">
+            <span class="edu-institution">{edu.institution}</span>
+            <span class="edu-period">{edu.period}</span>
+          </div>
+          <p class="edu-degree">{edu.degree}</p>
+          {edu.gpa && <p class="edu-gpa">GPA: {edu.gpa}</p>}
+        </div>
+      ))}
+    </>
+  )}
+
+  {cv.recent_projects.length > 0 && (
+    <>
+      <SectionHeading title="EXPERIENCE" />
+      {cv.recent_projects.map((p: any) => (
+        <ProjectBlock
+          period={p.period}
+          customer={p.customer}
+          function={p.function}
+          description={p.description}
+          activities={p.activities}
+          technologies={p.technologies}
+        />
+      ))}
+    </>
+  )}
+
+  {(cv.additional_projects ?? []).length > 0 && (
+    <>
+      {cv.recent_projects.length === 0 && <SectionHeading title="EXPERIENCE" />}
+      {cv.additional_projects.map((p: any) => (
+        <ProjectBlock
+          period={p.period}
+          customer={p.customer}
+          function={p.function}
+          description={p.description}
+          activities={p.activities}
+          technologies={p.technologies}
+        />
+      ))}
+    </>
+  )}
+
+  {(cv.certificates ?? []).length > 0 && (
+    <>
+      <SectionHeading title="CERTIFICATE" />
+      {cv.certificates.map((cert: any) => (
+        <div class="cert-entry">
+          <span class="cert-name">{cert.name}</span>
+          {cert.period && <span class="cert-period">{cert.period}</span>}
+        </div>
+      ))}
+    </>
+  )}
+
+  {skillNames.length > 0 && (
+    <>
+      <SectionHeading title="SKILL" />
+      <SkillsCard skills={skillNames} />
+    </>
+  )}
+</CvLayout>
+
+<style>
+  .education-entry {
+    margin-bottom: 3mm;
+  }
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .edu-institution {
+    font-weight: 700;
+    font-size: var(--fs-11);
+  }
+  .edu-period {
+    font-size: var(--fs-10);
+    color: var(--color-text-muted);
+  }
+  .edu-degree {
+    margin: 0.5mm 0 0;
+    font-size: var(--fs-10);
+  }
+  .edu-gpa {
+    margin: 0.5mm 0 0;
+    font-size: var(--fs-10);
+  }
+  .cert-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2mm;
+    font-size: var(--fs-10);
+  }
+  .cert-name {
+    font-weight: 700;
+  }
+  .cert-period {
+    color: var(--color-text-muted);
+  }
+</style>

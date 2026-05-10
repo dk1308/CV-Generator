@@ -1,0 +1,25 @@
+/* Design tokens — MyCv2 single-column layout */
+:root {
+  /* === Surfaces === */
+  --color-bg: #FFFFFF;
+  --color-rule: #333333;
+
+  /* === Text === */
+  --color-text: #000000;
+  --color-text-muted: #555555;
+
+  /* === Typography === */
+  --font-sans: "Times New Roman", "Noto Serif", Georgia, serif;
+
+  --fs-8: 8pt;
+  --fs-9: 9pt;
+  --fs-10: 10pt;
+  --fs-11: 11pt;
+  --fs-16: 16pt;
+  --fs-18: 18pt;
+
+  /* === Page geometry === */
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --page-margin: 20mm;
+}

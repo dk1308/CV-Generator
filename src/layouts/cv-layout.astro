@@ -1,0 +1,29 @@
+---
+/**
+ * Top-level layout for the CV page.
+ * Single-column traditional resume layout (MyCv2 style).
+ */
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/print.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'CV' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="cv-page">
+      <slot />
+    </div>
+  </body>
+</html>

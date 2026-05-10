@@ -1,0 +1,39 @@
+/* Print / PDF rules — MyCv2 single-column layout */
+
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+.cv-page {
+  max-width: 170mm;
+  margin: 0 auto;
+  padding: 0;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+@media print {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: white;
+  }
+  .cv-page {
+    max-width: none;
+  }
+}
+
+@media screen {
+  body {
+    background: #e8e8e8;
+    margin: 0;
+    padding: 10mm;
+  }
+  .cv-page {
+    background: white;
+    padding: 20mm;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    min-height: 297mm;
+  }
+}

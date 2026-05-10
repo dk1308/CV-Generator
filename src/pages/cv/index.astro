@@ -1,0 +1,14 @@
+---
+/**
+ * /cv/ → redirect to first CV entry.
+ * If user has a local (gitignored) yaml, it takes precedence over sample
+ * via alphabetical sort only when named to come before 'sample'.
+ * In practice, there's typically one active CV at a time.
+ */
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('cv');
+if (entries.length === 0) throw new Error('No CV yaml found in src/content/cv/');
+const first = entries[0];
+return Astro.redirect(`/cv/${first.id}/`);
+---

@@ -1,0 +1,82 @@
+---
+/**
+ * MyCv2 header: Name (large, bold) + Function + contact info line.
+ */
+import phoneIcon from '../icons/phone-call.png';
+import emailIcon from '../icons/email.png';
+import locationIcon from '../icons/location-pin.png';
+
+interface Props {
+  name: string;
+  function: string;
+  phone?: string;
+  email?: string;
+  location?: string;
+}
+const { name, function: fn, phone, email, location } = Astro.props;
+---
+
+<header class="name-block">
+  <h1>{name}</h1>
+  <p class="function">{fn}</p>
+  {(phone || email || location) && (
+    <p class="contact">
+      {phone && (
+        <span class="contact-item">
+          <img src={phoneIcon.src} alt="phone" class="contact-icon" />
+          {phone}
+        </span>
+      )}
+      {email && (
+        <span class="contact-item">
+          <img src={emailIcon.src} alt="email" class="contact-icon" />
+          {email}
+        </span>
+      )}
+      {location && (
+        <span class="contact-item">
+          <img src={locationIcon.src} alt="location" class="contact-icon" />
+          {location}
+        </span>
+      )}
+    </p>
+  )}
+</header>
+
+<style>
+  .name-block {
+    text-align: center;
+    margin: 0 0 5mm;
+    padding-bottom: 4mm;
+  }
+  .name-block h1 {
+    font-size: var(--fs-18);
+    font-weight: 700;
+    margin: 0 0 1mm;
+    color: var(--color-text);
+    letter-spacing: 0.5pt;
+  }
+  .name-block .function {
+    font-size: var(--fs-11);
+    margin: 0 0 2mm;
+    color: var(--color-text);
+  }
+  .name-block .contact {
+    font-size: var(--fs-9);
+    margin: 0;
+    color: var(--color-text-muted);
+    display: flex;
+    justify-content: center;
+    gap: 6mm;
+  }
+  .contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+  .contact-icon {
+    width: 2.5mm;
+    height: 2.5mm;
+    object-fit: contain;
+  }
+</style>

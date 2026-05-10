@@ -1,0 +1,59 @@
+---
+interface Props {
+  name: string;
+  description?: string;
+  technologies?: string[];
+  github?: string;
+}
+const { name, description, technologies = [], github } = Astro.props;
+---
+
+<article class="personal-project-block">
+  <header class="project-header">
+    <span class="project-name">{name}</span>
+    {github && (
+      <a class="project-github" href={github}>github</a>
+    )}
+  </header>
+  {description && <p class="description">{description}</p>}
+  {technologies.length > 0 && (
+    <p class="tech">
+      <strong>Technologies:</strong> {technologies.join(', ')}
+    </p>
+  )}
+</article>
+
+<style>
+  .personal-project-block {
+    margin: 0 0 4mm;
+    font-size: var(--fs-10);
+    line-height: 1.5;
+  }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4mm;
+  }
+  .project-name {
+    font-weight: 700;
+    font-size: var(--fs-11);
+    color: var(--color-text);
+  }
+  .project-github {
+    font-size: var(--fs-10);
+    color: var(--color-accent, #F15D03);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .project-github:hover {
+    text-decoration: underline;
+  }
+  .description {
+    margin: 1mm 0;
+    color: var(--color-text-muted);
+  }
+  .tech {
+    margin: 1mm 0 0;
+  }
+</style>

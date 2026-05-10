@@ -1,0 +1,21 @@
+---
+/**
+ * Objective / Summary — plain text block (MyCv2 style).
+ */
+interface Props {
+  summary: string;
+}
+const { summary } = Astro.props;
+---
+
+<p class="summary">{summary}</p>
+
+<style>
+  .summary {
+    font-size: var(--fs-10);
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+    text-align: justify;
+  }
+</style>

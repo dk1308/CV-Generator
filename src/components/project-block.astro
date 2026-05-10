@@ -1,0 +1,87 @@
+---
+/**
+ * Experience block — MyCv2 style.
+ * Header: company/project name left, period right.
+ * Below: role, bullet activities, technologies line.
+ */
+interface Props {
+  period: string;
+  customer: string;
+  function: string;
+  description?: string;
+  activities?: string[];
+  technologies?: string[];
+}
+const { period, customer, function: role, description, activities = [], technologies = [] } =
+  Astro.props;
+---
+
+<article class="project-block">
+  <header class="project-header">
+    <span class="customer">{customer}</span>
+    <span class="period">{period}</span>
+  </header>
+  {role && <p class="role">{role}</p>}
+  {description && <p class="description">{description}</p>}
+  {
+    activities.length > 0 && (
+      <ul class="activities">
+        {activities.map((a) => (
+          <li>{a}</li>
+        ))}
+      </ul>
+    )
+  }
+  {
+    technologies.length > 0 && (
+      <p class="tech">
+        <strong>Technologies:</strong> {technologies.join(", ")}
+      </p>
+    )
+  }
+</article>
+
+<style>
+  .project-block {
+    margin: 0 0 4mm;
+    font-size: var(--fs-10);
+    line-height: 1.5;
+  }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4mm;
+  }
+  .project-header .customer {
+    font-weight: 700;
+    font-size: var(--fs-11);
+    color: var(--color-text);
+  }
+  .project-header .period {
+    font-size: var(--fs-10);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+  .role {
+    margin: 0.5mm 0 0;
+    font-style: italic;
+    font-size: var(--fs-10);
+    color: var(--color-text);
+  }
+  .description {
+    margin: 1mm 0;
+  }
+  .activities {
+    margin: 1mm 0;
+    padding-left: 5mm;
+  }
+  .activities li {
+    margin-bottom: 0.5mm;
+  }
+  .tech {
+    margin: 1mm 0 0;
+    font-size: var(--fs-9);
+    color: var(--color-text);
+  }
+</style>

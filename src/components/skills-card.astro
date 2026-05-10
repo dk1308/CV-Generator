@@ -1,0 +1,35 @@
+---
+/**
+ * Skills — vertical list (MyCv2 style).
+ */
+interface Props {
+  skills?: string[];
+}
+const { skills = [] } = Astro.props;
+---
+
+{
+  skills.length > 0 && (
+    <ul class="skills-list">
+      {skills.map((s) => (
+        <li>{s}</li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .skills-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--fs-10);
+    line-height: 1.6;
+    columns: 2;
+    column-gap: 8mm;
+  }
+  .skills-list li {
+    margin: 0;
+    padding: 0.5mm 0;
+  }
+</style>

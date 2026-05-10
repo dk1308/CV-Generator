@@ -1,0 +1,79 @@
+name: "Khoa Nguyen"
+function: "Junior Software Engineer"
+email: "khoa.nguyen@sioux.asia"
+nationality: "Vietnam"
+languages:
+  - "Vietnamese — native"
+  - "English — B2"
+experience_since: 2024
+highest_education: "Bachelor of Software Engineering"
+hobbies: 
+ - "Technology"
+ - "Sports"
+ - "Cooking"
+
+summary: |
+  Software Engineer with 2 years of experience in designing, developing, and
+  maintaining web applications. Seeking to leverage strong problem-solving
+  skills and technical expertise to contribute to a dynamic development team
+  and deliver high-quality software solutions.
+
+skills:
+  - { name: ".NET (ASP.NET, WPF, Blazor, Entity Framework, ADO.NET)", level: 3 }
+  - { name: "ReactJS", level: 2 }
+  - { name: "UML", level: 3 }
+  - { name: "Azure DevOps Services", level: 2 }
+  - { name: "Microsoft SQL Server", level: 3 }
+  - { name: "PostgreSQL", level: 3 }
+  - { name: "Docker", level: 2 }
+  - { name: "Git", level: 3 }
+
+recent_projects:
+  - period: "May 2024 – Present"
+    customer: "Sioux Technologies Asia"
+    function: "Full-Stack Developer"
+    description: |
+      Cross-Regional Sales Platform. Designed to support diverse client requirements
+      across Vietnam, Cambodia, Indonesia, and India.
+    activities:
+      - "Led migration of legacy Xamarin sales app to ReactJS + Capacitor stack"
+      - "Architected robust backend services using ASP.NET Core"
+      - "Orchestrated cloud infrastructure using Microsoft Azure and CI/CD deployments"
+      - "Engineered database optimizations for bulk-write operations in SQL Server"
+    technologies: ["ReactJS", "ASP.NET Core", "Microsoft SQL Server", "Microsoft Azure"]
+  - period: "May 2024 – Present"
+    customer: "Hello Sioux"
+    function: "Full-Stack Developer"
+    description: |
+      Internal HR Management System. Automated employee leave management,
+      work-from-home requests, and benefits administration.
+    activities:
+      - "Resolved scalability bottlenecks by refining MongoDB indexing"
+      - "Improved middleware efficiency in Node.js"
+      - "Enhanced system reliability for concurrent user requests"
+    technologies: ["ReactJS", "Node.js", "MongoDB", "AWS EC2"]
+  - period: "May 2024 – Present"
+    customer: "Polyview"
+    function: "Desktop Software Engineer"
+    description: |
+      Industrial Welding Vision System. Developed for a French client to meet
+      rigorous industrial standards.
+    activities:
+      - "Engineered WPF desktop application for real-time visualization and hardware interaction"
+      - "Integrated vendor SDKs for low-level frame processing and camera configuration"
+      - "Implemented 3rd-party libraries while maintaining modular architecture"
+      - "Collaborated on design and verification for system stability"
+    technologies: [".NET Framework", "WPF", "C#", "Hardware SDKs"]
+
+additional_projects: 
+  - period: "May 2024 – Dec 2024"
+    customer: "Sioux Job Website"
+    function: "Software Engineer Intern"
+    description: "Designed and built an internal job management and company introduction web application from scratch and developed a CMS platform using Orchard Core for administrative operations."
+    technologies: ["ASP .NET", "Blazor", "PostgreSQL", "GraphQL"]
+
+courses:
+  - { year: 2024, name: "Udemy - Learn the techniques to write better C# code and stand out in technical interviews" }
+  - { year: 2024, name: "Udemy - Complete Blazor (WASM & Server) and ASP.NET API Development" }
+  - { year: 2025, name: "IELTS Academic" }
+  - { year: 2026, name: "Develop Solutions for Microsoft Azure" }
